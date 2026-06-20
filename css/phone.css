@@ -73,14 +73,27 @@ body {
 .icon-box img { width: 55px; height: 55px; object-fit: contain; }
 .filter-btn span { font-size: 0.75rem; font-weight: 600; }
 
-/* --- 3. GRID-I ME 6 KOLONA --- */
+/* --- Grid-i i Produkteve - Responsive --- */
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(6, 1fr); 
-    gap: 15px; 
-    max-width: 1800px;
+    /* Desktop: 6 kolona */
+    grid-template-columns: repeat(6, 1fr);
+    gap: 15px;
+    max-width: 1750px;
     margin: 20px auto;
     padding: 0 20px;
+}
+
+/* --- Rregullat për pajisje të ndryshme --- */
+@media (max-width: 1400px) { .product-grid { grid-template-columns: repeat(4, 1fr); } }
+@media (max-width: 1024px) { .product-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 768px) { 
+    .product-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 0 10px; }
+    .image-box { height: 180px; } /* Zvogëlojmë pak foton në celular */
+}
+@media (max-width: 480px) {
+    .product-grid { grid-template-columns: 1fr; } /* 1 kolonë për telefona shumë të vegjël */
+    .product-card { padding: 15px; }
 }
 
 .product-card {
@@ -103,7 +116,7 @@ body {
 
 /* Fotoja e centruar */
 .image-box { 
-    height: 230px; 
+    height: 270px; 
     width: 100%;
     display: flex; 
     align-items: center; 
@@ -144,17 +157,17 @@ body {
     margin-top: 5px;
 }
 
-/* Stili bazë i butonit të markës */
-.filter-btn {
-    text-decoration: none;
+.filter-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    color: #475569;
-    transition: all 0.3s ease; /* Tranzicion i butë */
-    padding: 10px;
-    border-radius: 12px;
+    justify-content: left; /* I mban të centruara */
+    flex-wrap: wrap;       /* I lejon të zbresin në rresht të ri nëse nuk ka vend */
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.filter-btn {
+    flex: 0 0 70px; /* Madhësi fikse për ikonat që të mos deformohen */
+    text-align: center;
 }
 
 /* Efekti Hover (kur kalon mausin) */
@@ -179,8 +192,158 @@ body {
 
 
 
-/* --- 4. RESPONSIVE --- */
-@media (max-width: 1600px) { .product-grid { grid-template-columns: repeat(5, 1fr); } }
-@media (max-width: 1300px) { .product-grid { grid-template-columns: repeat(4, 1fr); } }
-@media (max-width: 900px)  { .product-grid { grid-template-columns: repeat(3, 1fr); } }
-@media (max-width: 600px)  { .product-grid { grid-template-columns: repeat(2, 1fr); } }
+/* =========================================================
+   8. RESPONSIVE DESIGN (PËR TË GJITHA PAJISJET)
+   ========================================================= */
+
+/* --- Ekrane Laptopi (max 1200px) --- */
+@media (max-width: 1200px) {
+    .new-hero-content h1 {
+        font-size: 3rem;
+    }
+    .phone-catalog, .products {
+        gap: 20px;
+    }
+}
+
+/* --- Tableta & iPad (max 991px) --- */
+@media (max-width: 991px) {
+    .nav-container {
+        flex-wrap: wrap; 
+        gap: 15px;
+    }
+    .nav-links {
+        gap: 1.2rem;
+    }
+    .search-wrapper {
+        width: 180px;
+    }
+    .search-wrapper:focus-within {
+        width: 240px;
+    }
+    .new-hero-content h1 {
+        font-size: 2.8rem;
+    }
+}
+
+/* --- Celularë Landscape & Tableta të vegjël (max 768px) --- */
+@media (max-width: 768px) {
+    .top-bar-container {
+        justify-content: center; 
+        font-size: 0.8rem;
+    }
+    .nav-container {
+        flex-direction: column; 
+        align-items: center;
+        padding: 15px 20px;
+    }
+    .nav-links {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .search-wrapper {
+        width: 100%; 
+        max-width: 400px;
+    }
+    .search-wrapper:focus-within {
+        width: 100%; 
+    }
+    .new-hero-section {
+        padding-top: 150px;
+    }
+    .new-hero-content h1 {
+        font-size: 2.4rem;
+    }
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+}
+
+/* --- CELULARËT E MËDHENJ (iPhone 17 Pro Max, S24 Ultra - max 480px) --- */
+@media (max-width: 480px) {
+    .top-announcement-bar {
+        font-size: 0.75rem;
+        padding: 8px 0;
+    }
+    .logo {
+        font-size: 1.3rem;
+    }
+    .nav-links a {
+        font-size: 0.9rem;
+    }
+    .new-hero-section {
+        padding-top: 130px;
+    }
+    .new-hero-content h1 {
+        font-size: 2rem;
+        letter-spacing: -0.5px;
+    }
+    .new-hero-content p {
+        font-size: 1rem;
+        padding: 0 10px;
+    }
+    .new-hero-btn {
+        padding: 12px 35px;
+        font-size: 0.95rem;
+    }
+    
+    /* 2 Karta në rresht për iPhone të mëdhenj */
+    .phone-catalog, .products {
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 12px; 
+        padding: 0 12px;
+        margin: 30px auto;
+    }
+    .section-header h2 {
+        font-size: 1.5rem;
+    }
+    .card-image-wrapper, .image-box {
+        height: 160px; /* Zvogëlohet lartësia e imazhit */
+        padding: 10px;
+    }
+    .card-details, .details-area {
+        padding: 12px 8px;
+    }
+    .card-details h3, .details-area h3 {
+        font-size: 1rem; 
+        margin-bottom: 5px;
+    }
+    .specs {
+        font-size: 0.75rem;
+        margin-bottom: 10px;
+    }
+    .brand-logo-bottom {
+        height: 16px; 
+        margin-bottom: 10px;
+    }
+    .price {
+        font-size: 1.15rem;
+    }
+}
+
+/* --- CELULARËT E VEGJËL (iPhone SE, Telefona të vjetër - max 380px) --- */
+@media (max-width: 380px) {
+    /* Kalon në 1 kartë për rresht që të mos shtypen fare elementet */
+    .phone-catalog, .products {
+        grid-template-columns: 1fr; 
+        gap: 20px;
+    }
+    .card-image-wrapper, .image-box {
+        height: 220px;
+    }
+    .card-details h3, .details-area h3 {
+        font-size: 1.2rem; 
+    }
+    .specs {
+        font-size: 0.9rem;
+    }
+    .price {
+        font-size: 1.3rem;
+    }
+    .brand-logo-bottom {
+        height: 20px; 
+    }
+}
