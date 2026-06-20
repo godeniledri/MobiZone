@@ -1,0 +1,162 @@
+/* --- 1. KONFIGURIMI BAZË --- */
+* { box-sizing: border-box; }
+body {
+    background-color: #f8fafc;
+    margin: 0;
+    font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+    color: #0f172a;
+    padding-top: 180px;
+}
+
+/* --- 2. FILTER BAR --- */
+.filter-bar {
+    position: fixed;
+    top: 110px;
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    border-bottom: 1px solid #f1f5f9;
+    padding: 15px 0;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+}
+
+.filter-container {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+}
+
+.filter-btn {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: #475569;
+    transition: 0.3s;
+}
+
+.icon-box {
+    width: 55px;
+    height: 55px;
+    background: #f8fafc;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #f1f5f9;
+}
+
+.icon-box img { width: 28px; height: 28px; object-fit: contain; }
+.filter-btn span { font-size: 0.75rem; font-weight: 600; }
+
+/* --- 3. GRID-I ME 6 KOLONA --- */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); 
+    gap: 15px; 
+    max-width: 1800px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+.product-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 20px;
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.product-card:hover {
+    box-shadow: 0 15px 25px rgba(0,0,0,0.05);
+    border-color: #cbd5e1;
+    transform: translateY(-5px);
+}
+
+/* Fotoja e centruar */
+.image-box { 
+    height: 230px; 
+    width: 100%;
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    margin-bottom: 15px; 
+    overflow: hidden;
+}
+
+.phone-img { 
+    max-width: 170%; 
+    max-height: 130%; 
+    object-fit: contain; 
+}
+
+/* Logoja poshtë telefonit */
+.brand-logo-bottom {
+    width: 25px;
+    margin: 10px auto;
+}
+
+.brand-logo-bottom img { 
+    width: 250%; 
+    height: 250%; 
+    object-fit: contain; 
+    opacity: 0.8;
+}
+
+.details-area { width: 100%; }
+.details-area h3 { font-size: 0.95rem; margin: 5px 0; color: #0f172a; }
+.specs { font-size: 0.75rem; color: #64748b; margin-bottom: 10px; }
+.price { 
+    font-size: 1.1rem; 
+    font-weight: 800; 
+    background: #f8fafc;
+    padding: 6px 12px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-top: 5px;
+}
+
+/* Stili bazë i butonit të markës */
+.filter-btn {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: #475569;
+    transition: all 0.3s ease; /* Tranzicion i butë */
+    padding: 10px;
+    border-radius: 12px;
+}
+
+/* Efekti Hover (kur kalon mausin) */
+.filter-btn:hover {
+    background-color: #f1f5f9; /* Ngjyrë e lehtë gri */
+    transform: translateY(-2px);
+    color: #0f172a;
+}
+
+/* Klasa .active (kjo klasë shtohet kur je në faqen e markës) */
+.filter-btn.active {
+    background-color: #e0f2fe; /* Ngjyrë e lehtë blu */
+    color: #0369a1; /* Tekst blu më i errët */
+    border: 1px solid #bae6fd;
+}
+
+/* Logoja gjithashtu ndryshon pak kur është aktive */
+.filter-btn.active .icon-box {
+    border-color: #0369a1;
+}
+
+/* --- 4. RESPONSIVE --- */
+@media (max-width: 1600px) { .product-grid { grid-template-columns: repeat(5, 1fr); } }
+@media (max-width: 1300px) { .product-grid { grid-template-columns: repeat(4, 1fr); } }
+@media (max-width: 900px)  { .product-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 600px)  { .product-grid { grid-template-columns: repeat(2, 1fr); } }
