@@ -14,20 +14,26 @@
 </head>
 <body>
 
-   <!-- Menuja Kryesore NAV -->
-<header class="site-header">
+   <header class="site-header">
   
     <nav class="navbar">
           <div class="top-announcement-bar">
                 <div class="top-bar-container">
-                    <p>Ofertat dhe cilësia më e mirë në Kosovë! Transporti FALAS në gjithë Kosovën!</p>
+                    <p>Ofertat dhe cilësia më e mirë në Kosovë!</p>
             </div>
         </div>
         <div class="nav-container">
-            <a href="#" class="logo">Mobi<span>Zone</span></a>
+            <a href="index.html" class="logo">Mobi<span>Zone</span></a>
+            
+            <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+            <label for="menu-toggle" class="hamburger">
+                <span></span>
+                <span></span>
+            </label>
+
             <ul class="nav-links">
                 <li><a href="index.html" class="active">Ballina</a></li>
-                <li><a href="#">Rreth Nesh</a></li>
+                <li><a href="#rreth-nesh">Rreth Nesh</a></li>
                 <li><a href="#">Kontakt</a></li>
             </ul>
             <div class="search-wrapper">
@@ -122,25 +128,67 @@
 
 <div class="product-card">
     <div class="image-box">
-        <img src="photos/iph17.png" class="phone-img" alt="Phone">
+        <img src="photos/71SKOyjXoUL.png" class="phone-img1" alt="Phone">
     </div>
     <div class="details-area">
-        <h3>iPhone 17 Pro</h3>
-        <p class="specs">128GB, Cosmic Orange</p>
+        <h3>Apple Watch Ultra 2</h3>
+        <p class="specs">49mm Titanium, Always-On Retina Display</p>
         
         <div class="brand-logo-bottom">
             <img src="photos/LOGO/Apple-Logo.png" alt="Brand">
         </div>
         
-        <span class="price">€899</span>
+        <span class="price">€649</span>
     </div>
 </div>
 
-
-
- 
+<div class="product-card">
+    <div class="image-box">
+        <img src="photos/apple_airpods4_with.png" class="phone-img" alt="Phone">
+    </div>
+    <div class="details-area">
+        <h3>Apple AirPods 4 ANC</h3>
+        <p class="specs">Chip H2, Active Noise Cancellation</p>
+        
+        <div class="brand-logo-bottom">
+            <img src="photos/LOGO/Apple-Logo.png" alt="Brand">
+        </div>
+        
+        <span class="price">€165</span>
+    </div>
+</div>
 </section>
-     
+
+<section id="rreth-nesh" class="rreth-nesh-container">
+    <div class="section-header">
+        <h2>Kush jemi ne?</h2>
+        <div class="line"></div>
+        <p>MobiZone është një nga emrat më të besueshëm në tregun e telefonisë mobile...</p>
+    </div>
+    <div class="cards-wrapper">
+        </div>
+</section>
+<section id="rreth-nesh" class="rreth-nesh-container">
+    <div class="feature-box">
+        <i class="fa-solid fa-handshake"></i>
+        <h3>Shitje</h3>
+        <p>Ne mundësojmë shitjen e telefoneve më të ri dhe nga brendet më të ndryshme.</p>
+    </div>
+
+    <div class="feature-box">
+        <i class="fa-solid fa-gear"></i>
+        <h3>Servisim</h3>
+        <p>Ne mundësojmë servisimin e telefonit tuaj me shumë kujdes dhe përgjegjësi.</p>
+    </div>
+
+    <div class="feature-box">
+        <i class="fa-solid fa-code"></i>
+        <h3>Dekodim</h3>
+        <p>Ne mundësojmë dekodim për çdo lloj të telefonit tuaj.</p>
+    </div>
+</section>
+
+
     <footer class="site-footer">
         <div class="footer-container">
             <div class="footer-col about">
@@ -219,5 +267,23 @@
     });
 </script>
 
+
+<script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault(); // Kjo ndalon kërcimin e menjëhershëm default të HTML
+            
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+</script>
 </body>
 </html>

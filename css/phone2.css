@@ -8,75 +8,9 @@ body {
     padding-top: 180px;
 }
 
-/* --- 2. FILTER BAR --- */
-.filter-bar {
-    position: fixed;
-    top: 110px;
-    left: 0;
-    width: 100%;
-    background: #ffffff;
-    border-bottom: 1px solid #f1f5f9;
-    padding: 15px 0;
-    z-index: 999;
-    display: flex;
-    justify-content: center;
-}
-
-/* Kontejneri kryesor - Këtu fshihet sekreti i barazimit */
-.phone-grid {
-    max-width: 1750px; /* KJO DUHET TË JETË E NJËJTË me gjerësinë e kontejnerit të kartave të tua */
-    margin: 0 auto; 
-    padding: 0 20px; /* Sigurohu që ky padding është fiks i njëjtë me atë të kartave */
-}
-
-/* Kontejneri i ikonave */
-.filter-container {
-    display: flex;
-    justify-content: flex-start; /* Kjo i ngjit në të majtë, fiks mbi kartën e parë */
-    gap: 30px; /* Rregullon hapësirën mes ikonave. Zvogëloje ose rrite sipas dëshirës */
-    margin-bottom: 40px; 
-    padding: 0; /* Heq çdo padding shtesë që mund t'i shtyjë më brenda se kartat */
-}
-
-.filter-btn {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-decoration: none;
-    color: #333; /* Ngjyra e tekstit (ndryshoje nëse do) */
-    transition: transform 0.3s ease; /* Efekt i butë për hover */
-}
-
-.filter-btn span {
-    font-size: 18px; 
-    font-weight: 600;
-}
-
-/* Efekt i lehtë ngritjeje kur kalon miun sipër */
-.filter-btn:hover {
-    transform: translateY(-5px);
-}
-
-.icon-box {
-    width: 80px;
-    height: 80px;
-    background: #f8fafc;
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #f1f5f9;
-}
-
-
-
-.icon-box img { width: 55px; height: 55px; object-fit: contain; }
-.filter-btn span { font-size: 0.75rem; font-weight: 600; }
-
-/* --- Grid-i i Produkteve - Responsive --- */
+/* --- 2. GRID-I I PRODUKTEVE (KRYESOR) --- */
 .product-grid {
     display: grid;
-    /* Desktop: 6 kolona */
     grid-template-columns: repeat(6, 1fr);
     gap: 15px;
     max-width: 1750px;
@@ -84,266 +18,79 @@ body {
     padding: 0 20px;
 }
 
-/* --- Rregullat për pajisje të ndryshme --- */
-@media (max-width: 1400px) { .product-grid { grid-template-columns: repeat(4, 1fr); } }
-@media (max-width: 1024px) { .product-grid { grid-template-columns: repeat(3, 1fr); } }
-@media (max-width: 768px) { 
-    .product-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 0 10px; }
-    .image-box { height: 180px; } /* Zvogëlojmë pak foton në celular */
-}
-@media (max-width: 480px) {
-    .product-grid { grid-template-columns: 1fr; } /* 1 kolonë për telefona shumë të vegjël */
-    .product-card { padding: 15px; }
-}
-
 .product-card {
     background: #ffffff;
     border-radius: 20px;
     padding: 20px;
     border: 1px solid #e2e8f0;
-    transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
 }
 
-.product-card:hover {
-    box-shadow: 0 15px 25px rgba(0,0,0,0.05);
-    border-color: #cbd5e1;
-    transform: translateY(-5px);
+.image-box { height: 270px; width: 100%; display: flex; align-items: center; justify-content: center; margin-bottom: 15px; }
+.phone-img { max-width: 190%; max-height: 190%; object-fit: contain; }
+
+/* --- 3. MOBILE RESPONSIVE (DETYRIMI PËR 2 KOLONA) --- */
+@media (max-width: 768px) {
+    /* Sigurohemi që grid-i ndryshon gjithmonë në celular */
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+        padding: 0 10px !important;
+    }
+    
+    .image-box { height: 130px !important; }
+    .product-card { padding: 10px !important; }
+    .details-area h3 { font-size: 0.85rem !important; }
 }
 
-/* Fotoja e centruar */
-.image-box { 
-    height: 270px; 
-    width: 100%;
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    margin-bottom: 15px; 
-    overflow: hidden;
-}
 
-.phone-img { 
-    max-width: 170%; 
-    max-height: 130%; 
-    object-fit: contain; 
-}
-
-/* Logoja poshtë telefonit */
-.brand-logo-bottom {
-    width: 50px;
-    margin: 10px auto;
-}
-
-.brand-logo-bottom img { 
-    width: 100%; 
-    height: auto; 
-    object-fit: contain; 
-    opacity: 0.8;
-}
-
-.details-area { width: 100%; }
-.details-area h3 { font-size: 0.95rem; margin: 5px 0; color: #0f172a; }
-.specs { font-size: 0.75rem; color: #64748b; margin-bottom: 10px; }
-.price { 
-    font-size: 1.1rem; 
-    font-weight: 800; 
-    background: #f8fafc;
-    padding: 6px 12px;
-    border-radius: 10px;
-    display: inline-block;
-    margin-top: 5px;
-}
-
+/* --- 4. FILTERAT --- */
 .filter-container {
     display: flex;
-    justify-content: left; /* I mban të centruara */
-    flex-wrap: wrap;       /* I lejon të zbresin në rresht të ri nëse nuk ka vend */
+    justify-content: flex-start;
     gap: 15px;
     margin-bottom: 30px;
+    padding: 0 20px;
+    flex-wrap: wrap;
 }
 
 .filter-btn {
-    flex: 0 0 70px; /* Madhësi fikse për ikonat që të mos deformohen */
+    flex: 0 0 70px;
     text-align: center;
+    text-decoration: none;
+    color: #333;
 }
 
-/* Efekti Hover (kur kalon mausin) */
-.filter-btn:hover {
-    background-color: #f1f5f9; /* Ngjyrë e lehtë gri */
-    transform: translateY(-2px);
-    color: #0f172a;
-}
-
-/* Klasa .active (kjo klasë shtohet kur je në faqen e markës) */
-.filter-btn.active {
-    background-color: #e0f2fe; /* Ngjyrë e lehtë blu */
-    color: #0369a1; /* Tekst blu më i errët */
-    border: 1px solid #bae6fd;
-}
-
-/* Logoja gjithashtu ndryshon pak kur është aktive */
-.filter-btn.active .icon-box {
-    border-color: #0369a1;
-}
-
-
-
-
-/* =========================================================
-   8. RESPONSIVE DESIGN (PËR TË GJITHA PAJISJET)
-   ========================================================= */
-
-/* --- Ekrane Laptopi (max 1200px) --- */
-@media (max-width: 1200px) {
-    .new-hero-content h1 {
-        font-size: 3rem;
-    }
-    .phone-catalog, .products {
-        gap: 20px;
-    }
-}
-
-/* --- Tableta & iPad (max 991px) --- */
-@media (max-width: 991px) {
-    .nav-container {
-        flex-wrap: wrap; 
-        gap: 15px;
-    }
-    .nav-links {
-        gap: 1.2rem;
-    }
-    .search-wrapper {
-        width: 180px;
-    }
-    .search-wrapper:focus-within {
-        width: 240px;
-    }
-    .new-hero-content h1 {
-        font-size: 2.8rem;
-    }
-}
-
-/* --- Celularë Landscape & Tableta të vegjël (max 768px) --- */
+/* Kjo pjesë ndikon vetëm në ekrane të vogla (celularë) */
 @media (max-width: 768px) {
-    .top-bar-container {
-        justify-content: center; 
-        font-size: 0.8rem;
-    }
-    .nav-container {
-        flex-direction: column; 
-        align-items: center;
-        padding: 15px 20px;
-    }
-    .nav-links {
-        width: 100%;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-    .search-wrapper {
-        width: 100%; 
-        max-width: 400px;
-    }
-    .search-wrapper:focus-within {
-        width: 100%; 
-    }
-    .new-hero-section {
-        padding-top: 150px;
-    }
-    .new-hero-content h1 {
-        font-size: 2.4rem;
-    }
-    .footer-bottom {
-        flex-direction: column;
-        text-align: center;
-        gap: 15px;
-    }
-}
-
-/* --- CELULARËT E MËDHENJ (iPhone 17 Pro Max, S24 Ultra - max 480px) --- */
-@media (max-width: 480px) {
-    .top-announcement-bar {
-        font-size: 0.75rem;
-        padding: 8px 0;
-    }
-    .logo {
-        font-size: 1.3rem;
-    }
-    .nav-links a {
-        font-size: 0.9rem;
-    }
-    .new-hero-section {
-        padding-top: 130px;
-    }
-    .new-hero-content h1 {
-        font-size: 2rem;
-        letter-spacing: -0.5px;
-    }
-    .new-hero-content p {
-        font-size: 1rem;
+    .filter-container {
+        display: flex;
+        flex-wrap: nowrap; /* Mban ikonat në një rresht */
+        justify-content: space-between;
+        gap: 8px; /* Hapësirë më e vogël për ekranet e ngushta */
         padding: 0 10px;
+        width: 100%;
+        overflow-x: auto; /* Lejon swipe nëse ikonat janë shumë për ekranin */
     }
-    .new-hero-btn {
-        padding: 12px 35px;
-        font-size: 0.95rem;
-    }
-    
-    /* 2 Karta në rresht për iPhone të mëdhenj */
-    .phone-catalog, .products {
-        grid-template-columns: repeat(2, 1fr); 
-        gap: 12px; 
-        padding: 0 12px;
-        margin: 30px auto;
-    }
-    .section-header h2 {
-        font-size: 1.5rem;
-    }
-    .card-image-wrapper, .image-box {
-        height: 160px; /* Zvogëlohet lartësia e imazhit */
-        padding: 10px;
-    }
-    .card-details, .details-area {
-        padding: 12px 8px;
-    }
-    .card-details h3, .details-area h3 {
-        font-size: 1rem; 
-        margin-bottom: 5px;
-    }
-    .specs {
-        font-size: 0.75rem;
-        margin-bottom: 10px;
-    }
-    .brand-logo-bottom {
-        height: 16px; 
-        margin-bottom: 10px;
-    }
-    .price {
-        font-size: 1.15rem;
-    }
-}
 
-/* --- CELULARËT E VEGJËL (iPhone SE, Telefona të vjetër - max 380px) --- */
-@media (max-width: 380px) {
-    /* Kalon në 1 kartë për rresht që të mos shtypen fare elementet */
-    .phone-catalog, .products {
-        grid-template-columns: 1fr; 
-        gap: 20px;
+    .filter-btn {
+        flex: 0 0 auto; /* Nuk lejon butonat të shtrihen më shumë se duhet */
+        min-width: 65px; /* Madhësi fikse që të mos ngushtohen shumë */
     }
-    .card-image-wrapper, .image-box {
-        height: 220px;
+
+    .icon-box {
+        width: 55px; /* Madhësi e përshtatshme për celular */
+        height: 55px;
     }
-    .card-details h3, .details-area h3 {
-        font-size: 1.2rem; 
+
+    .icon-box img {
+        width: 35px; /* Fotoja brenda ikonës */
     }
-    .specs {
-        font-size: 0.9rem;
-    }
-    .price {
-        font-size: 1.3rem;
-    }
-    .brand-logo-bottom {
-        height: 20px; 
+
+    .filter-btn span {
+        font-size: 0.7rem; /* Tekst më i vogël për të mos zënë vend */
     }
 }

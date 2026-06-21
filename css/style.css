@@ -1,3 +1,6 @@
+html {
+    scroll-behavior: smooth !important;
+}
 /* --- 1. BAZA, VARIABLAT DHE RESET --- */
 :root {
     --primary-color: #0f172a; 
@@ -17,6 +20,7 @@
     box-sizing: border-box;
     font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
     padding-top: 0;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -65,12 +69,13 @@ body {
     border-bottom: 1px solid rgba(15, 23, 42, 0.04);
 }
 
+/* --- NAVBAR (MENUJA) E PËRDITËSUAR --- */
 .nav-container {
     max-width: 1400px;
     margin: 0 auto;
     padding: 0.85rem 2rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Kjo shtyn logon majtas, menu-në në mes, kërkimin djathtas */
     align-items: center;
     gap: 20px;
 }
@@ -87,10 +92,13 @@ body {
     color: var(--accent-color);
 }
 
+/* Për të garantuar që menuja të rrijë në mes */
 .nav-links {
     list-style: none;
     display: flex;
     gap: 2rem;
+    flex: 1;                /* Menuja merr hapësirën boshe */
+    justify-content: center; /* Centron linket në mes */
 }
 
 .nav-links a {
@@ -104,7 +112,6 @@ body {
     color: var(--accent-color);
 }
 
-/* --- KUTIA E KËRKIMIT --- */
 .search-wrapper {
     position: relative;
     display: flex;
@@ -112,9 +119,11 @@ body {
     background-color: #edf2f7;
     border-radius: 50px;
     padding: 3px;
-    width: 210px; 
+    width: 210px;
     border: 1px solid transparent;
-    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1); 
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+    margin-right: 40px; /* e afron më shumë te menuja */
 }
 
 .search-wrapper:focus-within {
@@ -172,6 +181,9 @@ body {
     padding: 2px 6px;
     border-radius: 50%;
 }
+
+.image-box { height: 270px; width: 100%; display: flex; align-items: center; justify-content: center; margin-bottom: 15px; }
+.phone-img1 { max-width: 110%; max-height: 110%; object-fit: contain; transition: transform 0.5s ease;}
 
 /* --- 3. HERO SECTION --- */
 .new-hero-section {
@@ -394,8 +406,8 @@ body {
 }
 
 .phone-img, .img-placeholder {
-    max-width: 165%;
-    max-height: 165%;
+    max-width: 155%;
+    max-height: 155%;
     object-fit: contain;
     transition: transform 0.5s ease;
 }
@@ -403,6 +415,7 @@ body {
 .phone-card:hover .phone-img, .product-card:hover .phone-img {
     transform: scale(1.1);
 }
+
 
 .card-details, .details-area {
     padding: 25px 20px;
@@ -619,158 +632,214 @@ body {
     display: none !important;
 }
 
+.rreth-nesh-container {
+    padding: 20px 20px; /* Sa më i vogël numri i parë, aq më lart shkon seksioni */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px; 
+    max-width: 1300px; /* E rritëm pak gjerësinë maksimale */
+    margin: 0 auto;
+}
+
+.feature-box {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    padding: 20px; /* Rritja e kësaj vlere i zmadhon kartat */
+    border-radius: 20px;
+    transition: 0.3s;
+    min-height: 250px; /* Kjo garanton që janë të mëdha edhe nëse teksti është i shkurtër */
+}
+
+/* Zmadhimi i tekstit brenda kartave për proporcion */
+.feature-box h3 {
+    font-size: 24px; /* Nga 20px në 24px */
+    margin-bottom: 20px;
+}
+
+.feature-box p {
+    font-size: 17px; /* Nga 15px në 17px */
+    line-height: 1.7;
+}
+
+.feature-box i {
+    font-size: 20px;
+    color: #3b82f6; /* Bluja e MobiZone */
+    background: #eff6ff; /* Blu e çelët në sfond */
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    border: 1px solid #dbeafe; /* Kufiri i ikonës */
+}
+
+.feature-box h3 {
+    color: #3b82f6; /* Titulli blu */
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.feature-box p {
+    color: #374151; /* Teksti gri i errët */
+    line-height: 1.5;
+    font-size: 15px;
+}
+
+/* Stilimi i titullit dhe paragrafit */
+.section-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-header h2 {
+    font-size: 32px;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+/* Vija dekorative poshtë titullit */
+.section-header .line {
+    width: 60px;
+    height: 4px;
+    background-color: var(--accent-color); /* Bluja e MobiZone */
+    margin: 0 auto 20px auto;
+    border-radius: 2px;
+}
+
+.section-header p {
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Për t'u dukur bukur në celular (rreshtim vertikal) */
+@media (max-width: 768px) {
+    .rreth-nesh-container {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* =========================================================
-   8. RESPONSIVE DESIGN (PËR TË GJITHA PAJISJET)
+   8. RESPONSIVE DESIGN (MENU 2-VIJA MAJTAS, LOGO NË MES)
    ========================================================= */
 
-/* --- Ekrane Laptopi (max 1200px) --- */
-@media (max-width: 1200px) {
-    .new-hero-content h1 {
-        font-size: 3rem;
-    }
-    .phone-catalog, .products {
-        gap: 20px;
-    }
+/* Fshehja e elementeve të celularit në Desktop */
+#menu-toggle, .hamburger {
+    display: none;
 }
 
-/* --- Tableta & iPad (max 991px) --- */
-@media (max-width: 991px) {
-    .nav-container {
-        flex-wrap: wrap; 
-        gap: 15px;
-    }
-    .nav-links {
-        gap: 1.2rem;
-    }
-    .search-wrapper {
-        width: 180px;
-    }
-    .search-wrapper:focus-within {
-        width: 240px;
-    }
-    .new-hero-content h1 {
-        font-size: 2.8rem;
-    }
-}
-
-/* --- Celularë Landscape & Tableta të vegjël (max 768px) --- */
+/* --- CELULARË DHE TABLETA (max-width: 768px) --- */
 @media (max-width: 768px) {
-    .top-bar-container {
-        justify-content: center; 
-        font-size: 0.8rem;
-    }
-    .nav-container {
-        flex-direction: column; 
+    
+    /* 1. KONTENIERI KRYESOR GRID */
+  .nav-container {
+        display: flex !important;
+        flex-wrap: wrap; /* Lejon që search-i të zbresë poshtë */
+        justify-content: space-between;
         align-items: center;
-        padding: 15px 20px;
+        padding: 10px 20px;
     }
-    .nav-links {
-        width: 100%;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-    .search-wrapper {
-        width: 100%; 
-        max-width: 400px;
-    }
-    .search-wrapper:focus-within {
-        width: 100%; 
-    }
-    .new-hero-section {
-        padding-top: 150px;
-    }
-    .new-hero-content h1 {
-        font-size: 2.4rem;
-    }
-    .footer-bottom {
-        flex-direction: column;
-        text-align: center;
-        gap: 15px;
-    }
-}
 
-/* --- CELULARËT E MËDHENJ (iPhone 17 Pro Max, S24 Ultra - max 480px) --- */
-@media (max-width: 480px) {
-    .top-announcement-bar {
-        font-size: 0.75rem;
-        padding: 8px 0;
+    /* 2. HAMBURGERI (I RREGULLUAR MAJTAS) */
+    .hamburger {
+        grid-column: 1;
+        justify-self: start;
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        width: 24px;
+        height: 20px;
+        cursor: pointer;
+        z-index: 1010;
     }
+
+    .hamburger span {
+        display: block;
+        height: 2px;
+        width: 24px;
+        background-color: #0f172a;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+    }
+
+    .hamburger span:nth-child(1) { width: 100%; }
+    .hamburger span:nth-child(2) { width: 70%; }
+
+    #menu-toggle:checked ~ .hamburger span:nth-child(1) { transform: translateY(3.25px) rotate(45deg); }
+    #menu-toggle:checked ~ .hamburger span:nth-child(2) { width: 100%; transform: translateY(-3.25px) rotate(-45deg); }
+
+    /* 3. LOGO (QENDËR) */
     .logo {
-        font-size: 1.3rem;
+        order: 2;
+        /* E vendosim në mes të ekranit */
+        position: absolute;
+        top: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 1.2rem;
     }
-    .nav-links a {
-        font-size: 0.9rem;
+
+    /* 4. CART (DJATHTAS) */
+    .cart-container {
+        display: flex !important;
+        order: 3;
     }
-    .new-hero-section {
-        padding-top: 130px;
+    /* 5. SEARCH (RRESHT I RI) */
+   .search-wrapper {
+        order: 4; /* I fundit në renditje */
+        width: 100% !important;
+        margin-top: 15px !important;
+        right: -5%;
+        height: 42px;
+        border-radius: 12px;
     }
-    .new-hero-content h1 {
-        font-size: 2rem;
-        letter-spacing: -0.5px;
+
+    /* 6. DROPDOWN (MENYJA) */
+    .nav-links {
+        position: absolute;
+        top: 100%; 
+        left: 0;
+        width: 100%;
+        background-color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease;
+        z-index: 1005;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.05);
     }
-    .new-hero-content p {
-        font-size: 1rem;
-        padding: 0 10px;
-    }
-    .new-hero-btn {
-        padding: 12px 35px;
-        font-size: 0.95rem;
+
+    #menu-toggle:checked ~ .nav-links {
+        max-height: 200px;
     }
     
-    /* 2 Karta në rresht për iPhone të mëdhenj */
-    .phone-catalog, .products {
-        grid-template-columns: repeat(2, 1fr); 
-        gap: 12px; 
-        padding: 0 12px;
-        margin: 30px auto;
+    .nav-links a {
+        display: block;
+        padding: 15px;
+        text-align: center;
+        border-bottom: 1px solid #f1f5f9;
     }
-    .section-header h2 {
-        font-size: 1.5rem;
-    }
-    .card-image-wrapper, .image-box {
-        height: 100px; /* Zvogëlohet lartësia e imazhit */
-        padding: 100px;
-    }
-    .card-details, .details-area {
-        padding: 12px 8px;
-    }
-    .card-details h3, .details-area h3 {
-        font-size: 1rem; 
-        margin-bottom: 5px;
-    }
-    .specs {
-        font-size: 0.75rem;
-        margin-bottom: 10px;
-    }
-    .brand-logo-bottom {
-        height: 16px; 
-        margin-bottom: 10px;
-    }
-    .price {
-        font-size: 1.15rem;
+
+    /* RREGULLIMI I HERO SECTION */
+    .new-hero-section {
+        padding-top: 210px !important; /* Përshtatur me search-in poshtë */
     }
 }
-
-/* --- CELULARËT E VEGJËL (iPhone SE, Telefona të vjetër - max 380px) --- */
-@media (max-width: 380px) {
-    /* Kalon në 1 kartë për rresht që të mos shtypen fare elementet */
+@media (max-width: 480px) {
     .phone-catalog, .products {
-        grid-template-columns: 1fr; 
-        gap: 20px;
-    }
-    .card-image-wrapper, .image-box {
-        height: 220px;
-    }
-    .card-details h3, .details-area h3 {
-        font-size: 1.2rem; 
-    }
-    .specs {
-        font-size: 0.9rem;
-    }
-    .price {
-        font-size: 1.3rem;
-    }
-    .brand-logo-bottom {
-        height: 20px; 
-    }
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+    padding: 0 10px !important;
+}
+}
+/* --- CELULARË TË VEGJËL (max-width: 480px) --- */
+@media (max-width: 480px) {
+    .new-hero-content h1 { font-size: 1.95rem; }
+    .new-hero-image img { width: 85% !important; max-width: 290px !important; }
 }
